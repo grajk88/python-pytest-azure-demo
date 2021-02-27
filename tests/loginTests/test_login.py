@@ -1,13 +1,14 @@
 import pytest
 from selenium import webdriver
 from pathlib import *
+from chromedriver_py import binary_path
 
 class TestLogin:
     @pytest.fixture()
     def test_setup(self):
         global driver
 
-        driver = webdriver.Chrome(executable_path="./drivers/chromedriver.exe")
+        driver = webdriver.Chrome(executable_path=binary_path)
         driver.implicitly_wait(10)
         driver.maximize_window()
         yield
