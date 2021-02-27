@@ -1,14 +1,13 @@
 import pytest
 from selenium import webdriver
-from pathlib import *
-from chromedriver_py import binary_path
+from webdriver_manager.chrome import ChromeDriverManager
+
 
 class TestLogin:
     @pytest.fixture()
     def test_setup(self):
         global driver
-
-        driver = webdriver.Chrome(executable_path=binary_path)
+        driver = webdriver.Chrome(ChromeDriverManager().install())
         driver.implicitly_wait(10)
         driver.maximize_window()
         yield
@@ -16,7 +15,7 @@ class TestLogin:
         driver.quit()
         print("Test Completed")
 
-    def test_login(self,test_setup):
+    def test_login(self, test_setup):
         driver.get("https://parabank.parasoft.com/parabank/index.htm")
         driver.find_element_by_name("username").send_keys("admin")
         driver.find_element_by_name("password").send_keys("demo")
