@@ -7,8 +7,10 @@ class TestLogin:
     @pytest.fixture()
     def test_setup(self):
         global driver
+        chrome_options = webdriver.ChromeOptions()
+        chrome_options.add_argument('--headless')
 
-        driver = webdriver.Chrome(executable_path=binary_path)
+        driver = webdriver.Chrome(executable_path=binary_path, chrome_options=chrome_options)
         driver.implicitly_wait(10)
         driver.maximize_window()
         yield
