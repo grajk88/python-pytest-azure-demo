@@ -30,10 +30,3 @@ class TestLogin:
         driver.find_element_by_name("password").submit()
         x = driver.title
         assert x == "xxxxxx"
-
-    '''
-    def test_teardown():
-        driver.close()
-        driver.quit()
-        print("Test Completed")
-    '''
