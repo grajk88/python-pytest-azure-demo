@@ -18,7 +18,7 @@ class TestLogin:
         driver.quit()
         print("Test Completed")
 
-    def test_login(self,test_setup):
+    def test_01_login(self,test_setup):
         driver.get("https://parabank.parasoft.com/parabank/index.htm")
         driver.find_element_by_name("username").send_keys("admin")
         driver.find_element_by_name("password").send_keys("demo")
@@ -26,13 +26,29 @@ class TestLogin:
         x = driver.title
         assert x == "ParaBank | Accounts Overview"
 
-    def test_login_fail_test(self, test_setup):
+    def test_02_login_fail_test(self, test_setup):
         driver.get("https://parabank.parasoft.com/parabank/index.htm")
         driver.find_element_by_name("username").send_keys("admin")
         driver.find_element_by_name("password").send_keys("demo")
         driver.find_element_by_name("password").submit()
         x = driver.title
-        # assert x == "xxxxxx"
+        assert x == "xxxxxx"
+
+    def test_03_login(self, test_setup):
+        driver.get("https://parabank.parasoft.com/parabank/index.htm")
+        driver.find_element_by_name("username").send_keys("admin")
+        driver.find_element_by_name("password").send_keys("demo")
+        driver.find_element_by_name("password").submit()
+        x = driver.title
+        assert x == "ParaBank | Accounts Overview"
+
+    def test_04_login_fail_test(self, test_setup):
+        driver.get("https://parabank.parasoft.com/parabank/index.htm")
+        driver.find_element_by_name("username").send_keys("admin")
+        driver.find_element_by_name("password").send_keys("demo")
+        driver.find_element_by_name("password").submit()
+        x = driver.title
+        assert x == "xxxxxx"
 
     '''
     def test_teardown():
