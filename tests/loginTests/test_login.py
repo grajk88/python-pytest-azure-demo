@@ -41,7 +41,7 @@ class TestLogin:
             driver.find_element_by_name("password").send_keys("demo")
             driver.find_element_by_name("password").submit()
             x = driver.title
-            assert x == "xxxxxx"
+            assert x == "ParaBank | Accounts Overview"
         except:
             print("Something Failed")
             assert False
@@ -66,7 +66,7 @@ class TestLogin:
             driver.find_element_by_name("password").send_keys("demo")
             driver.find_element_by_name("password").submit()
             x = driver.title
-            assert x == "xxxxxx"
+            assert x == "ParaBank | Accounts Overview"
         except:
             print("Something is failing")
             assert False
