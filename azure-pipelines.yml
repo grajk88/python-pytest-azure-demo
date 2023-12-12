@@ -40,5 +40,5 @@ steps:
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'NUnit'
-    testResultsFiles: '**/-results.xml'
+    testResultsFiles: '**/*-results.xml'
     
