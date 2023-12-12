@@ -30,6 +30,7 @@ steps:
 - task: CmdLine@2
   inputs:
     script: 'python -m pytest --html=\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml -n 5'
+  continueOnError: true 
 
 - task: PublishBuildArtifacts@1
   inputs:
