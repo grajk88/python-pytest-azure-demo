@@ -30,7 +30,7 @@ steps:
 
 - task: CmdLine@2
   inputs:
-    script: 
+    script: |
       python -m pytest --html=\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml -n 5
       coverage run -m pytest
       coverage xml -o coverage.xml
