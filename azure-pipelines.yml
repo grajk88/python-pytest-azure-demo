@@ -1,0 +1,43 @@
+# Starter pipeline
+# Start with a minimal pipeline that you can customize to build and deploy your code.
+# Add steps that build, run tests, deploy, and more:
+# https://aka.ms/yaml
+
+trigger:
+- master
+
+pool:
+  vmImage: ubuntu-latest
+
+steps:
+- task: UsePythonVersion@0
+  inputs:
+    versionSpec: '3.8'
+    addToPath: true
+    architecture: 'x64'
+    
+- task: CmdLine@2
+  inputs:
+    script: |
+      python -m pip install --upgrade pip
+      pip install selenium
+      pip install pytest
+      pip install pytest-html
+      pip install chromedriver-py==88.0.4324.96
+      pip install pytest-xdist
+      pip install pytest-nunit
+
+- task: CmdLine@2
+  inputs:
+    script: 'python -m pytest --html=\reports\Report.html --self-contained-html --doctest-modules --nunitxml=nunit/test-results.xml -n 5'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+    ArtifactName: 'test_reports'
+    publishLocation: 'Container'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'NUnit'
+    testResultsFiles: '**/-results.xml'
+    
